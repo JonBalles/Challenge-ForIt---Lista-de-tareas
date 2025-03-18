@@ -3,10 +3,7 @@ const router = express.Router();
 
 
 
-router.get("/api/tasks", (req, res));
-router.post("/api/tasks", (req, res));
-router.put("api/tasks/:id", (req, res));
-router.delete("api/tasks/:id", (req, res));
+
 
 
 
