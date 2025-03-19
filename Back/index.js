@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+const cors = require("cors")
 app.use(express.json());
+app.use(cors());
 
 let tareas = [
     { id: 1, titulo: "Sacar la basura", descripcion: "Recolectar restos y chatarra", completada: false, creada: "18/3/2025"},
@@ -25,10 +27,10 @@ app.get("/api/tasks", (req, res) => {
 });
 
 app.get("/api/tasks/:id", (req, res) => {
-    const {id}  = req.params.id;
+    const {id}  = req.params;
     const tarea = tareas.find(tarea => tarea.id == id);
     if (!tarea) {
-        res.status(404).send("ID de invalido");
+        res.status(404).json({ mensaje: "ID inválido" });
         return;
     }
     res.json(tarea);
@@ -38,45 +40,46 @@ app.post("/api/tasks", (req, res) =>{
     const { titulo, descripcion } = req.body;
     
     if (!titulo || !descripcion) {
-        res.status(400).send("Datos incompletos");
+        res.status(400).json({ mensaje: "Error de datos" });
         return;
     }
 
     crearTarea(titulo, descripcion);
 
-    res.status(200).send("Tarea creada exitosamente");
+    res.status(200).json({ mensaje: "Tarea creada exitosamente" });
 });
 
 app.put("/api/tasks/:id", (req, res)=>{
-    const id  = req.params.id;
+    const id  = req.params;
     const { titulo, descripcion, completada } = req.body;
 
     if (!titulo || !descripcion || completada === undefined) {
-        res.status(400).send("Datos incompletos");
+        res.status(400).json({ mensaje: "Error de datos" });
         return;
     }
 
     const tarea = tareas.find(tarea => tarea.id == id);
     if (!tarea) {
-        res.status(404).send("ID de invalido");
+        res.status(404).json({ mensaje: "ID inválido" });
         return;
     }
     tarea.titulo = titulo;
     tarea.descripcion = descripcion;
     tarea.completada = completada;
-    res.status(200).send("Tarea editada exitosamente");
+    res.status(200).json({ mensaje: "Tarea editada exitosamente" });
 });
 
 app.delete("/api/tasks/:id", (req, res)=>{
-    const id =req.params.id;
+    const id =req.params;
     const tareaID = tareas.findIndex(tarea => tarea.id == id);
     if (tareaID === -1) {
-        res.status(404).send("ID de invalido");
+        res.status(404).json({ mensaje: "ID inválido" });
         return;
     }
     tareas.splice(tareaID, 1);
+   
 
-    res.status(200).send("Tarea eliminada con exito");
+    res.status(200).json({ mensaje: "Tarea eliminada exitosamente" });
 });
 
 
