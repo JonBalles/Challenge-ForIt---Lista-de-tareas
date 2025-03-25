@@ -11,16 +11,6 @@
 </p>
 </div>
 
-
-<h2 align='center'>Demostración</h2>
-
-<div align='center'>
-  <p>
-  Esta es una breve demostración de como funciona la app. Cualquier duda o consulta comunicarse via mail a jonatan.a.ballestero@gmail.com
-  </p>
-  <img src="/demostracion.gif" alt="demo">
-</div>
-
 <h2 align='center'>Demostración</h2>
  
 <div align='center'>
