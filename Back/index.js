@@ -52,7 +52,7 @@ app.post("/api/tasks", (req, res) =>{
 });
 
 app.put("/api/tasks/:id", (req, res)=>{
-    const id  = req.params;
+    const {id} = req.params;
     const { titulo, descripcion, completada, finalizada } = req.body;
 
     if (!titulo || !descripcion || completada === undefined) {
@@ -78,7 +78,7 @@ app.put("/api/tasks/:id", (req, res)=>{
 });
 
 app.delete("/api/tasks/:id", (req, res)=>{
-    const id =req.params;
+    const {id}= req.params;
     const tareaID = tareas.findIndex(tarea => tarea.id == id);
     if (tareaID === -1) {
         res.status(404).json({ mensaje: "ID inválido" });

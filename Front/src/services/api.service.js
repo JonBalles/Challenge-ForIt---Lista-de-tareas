@@ -15,7 +15,7 @@ export const fetchTareas = async () => {
 };
 
 export const crearTarea = async (task) => {
-    const response = await fetch(`/api/tasks/${id}`, {
+    const response = await fetch(API_URL, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -29,13 +29,13 @@ export const crearTarea = async (task) => {
     if (response.ok) {
         return;
     } else {
-        console.error("Error al completar la tarea");
+        console.error("Error al crear la tarea");
         return;
     }
 }
 
 export const editarTarea = async (task) => {
-    const response = await fetch(`/api/tasks/${id}`, {
+    const response = await fetch(`${API_URL}/${task.id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
@@ -56,7 +56,7 @@ export const editarTarea = async (task) => {
 }
 
 export const eliminarTarea = async (id) => {
-    const response = await fetch(`/api/tasks/${id}`, {
+    const response = await fetch(`${API_URL}/${id}`, {
         method: "DELETE",
     });
 
