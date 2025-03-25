@@ -18,5 +18,5 @@
   <p>
   Esta es una breve demostración de como funciona la app. Cualquier duda o consulta comunicarse via mail a jonatan.a.ballestero@gmail.com
   </p>
-  <img src="./demostracion.gif" alt="demo">
+  <img src="/demostracion.gif" alt="demo">
 </div>
